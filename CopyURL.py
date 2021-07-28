@@ -1,8 +1,13 @@
 # This will create a way to copy the URL to the clipboard. 
 
 dbc.Button("Copy Link", block=True, color="info", id="copy_link_button", n_clicks=0)
-dcc.Link(id="query_link", href="#", target="_blank")
-html.Div(id="copy_status")
+
+html.Div(
+      [
+          dcc.Link(id="query_link", href="#", target="_blank"),
+      ],
+      style="display:none"
+  )
 
 
 @dash_app.callback([
