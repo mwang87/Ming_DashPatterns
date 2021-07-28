@@ -35,7 +35,7 @@ def draw_url(usi1, library_select, analog_select, delta_mass_below, delta_mass_a
   
 dash_app.clientside_callback(
     """
-    function(n_clicks, text_to_copy) {
+    function(n_clicks, text_to_copy, original_button_text) {
         if (n_clicks > 0) {
             const el = document.createElement('textarea');
             el.value = text_to_copy;
@@ -43,17 +43,24 @@ dash_app.clientside_callback(
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            return 'Copied to clipboard';
+
+            setTimeout(function(){ 
+                    document.getElementById("copy_link_button").textContent = original_button_text 
+                }, 2000);
+
+            return 'Copied!';
         } else {
-            return '';
+            return original_button_text;
         }
     }
     """,
-    Output('copy_status', 'children'),
+    Output('copy_link_button', 'children'),
     [
         Input('copy_link_button', 'n_clicks')
     ],
     [
-        State('query_link', 'href')
+        State('query_link', 'href'),
+        State('copy_link_button', 'children'),
     ]
 )
+
