@@ -5,7 +5,7 @@ ints = [peak[1]/max_int for peak in ms1_peaks]
 neg_ints = [intensity * -1 for intensity in ints]
 
 # Hover data
-hover_label = ["{} m/z, {} int".format(mz[i], ints[i]) for i in range(mzs)]
+hover_label = ["{} m/z, {} int".format(mzs[i], ints[i]) for i in range(mzs)]
 
 ms1_fig = go.Figure(
     data=go.Scatter(x=mzs, y=ints, 
