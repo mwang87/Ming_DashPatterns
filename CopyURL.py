@@ -6,7 +6,9 @@ html.Div(
       [
           dcc.Link(id="query_link", href="#", target="_blank"),
       ],
-      style="display:none"
+      style={
+            "display" :"none"
+      }
   )
 
 
