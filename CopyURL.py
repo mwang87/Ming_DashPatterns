@@ -40,7 +40,7 @@ def draw_url(usi1, library_select, analog_select, delta_mass_below, delta_mass_a
   
 dash_app.clientside_callback(
     """
-    function(n_clicks, text_to_copy) {
+    function(n_clicks, button_id, text_to_copy) {
         original_text = "Copy Link"
         if (n_clicks > 0) {
             const el = document.createElement('textarea');
@@ -51,20 +51,21 @@ dash_app.clientside_callback(
             document.body.removeChild(el);
 
             setTimeout(function(){ 
-                    document.getElementById("copy_link_button").textContent = original_text
+                    document.getElementById(button_id).textContent = original_text
                 }, 1000);
 
-            document.getElementById("copy_link_button").textContent = "Copied!"
+            document.getElementById(button_id).textContent = "Copied!"
             return 'Copied!';
         } else {
-            document.getElementById("copy_link_button").textContent = original_text
+            document.getElementById(button_id).textContent = original_text
             return original_text;
         }
     }
     """,
     Output('copy_link_button', 'children'),
     [
-        Input('copy_link_button', 'n_clicks')
+        Input('copy_link_button', 'n_clicks'),
+        Input('copy_link_button', 'id'),
     ],
     [
         State('query_link', 'href'),
