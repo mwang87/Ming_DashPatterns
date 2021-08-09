@@ -51,13 +51,14 @@ dash_app.clientside_callback(
             document.body.removeChild(el);
 
             setTimeout(function(){ 
-                    document.getElementById(button_id).textContent = original_text
+                return function(id_to_update, text_to_update){
+                    document.getElementById(id_to_update).textContent = text_to_update
+                }(button_id)
                 }, 1000);
 
             document.getElementById(button_id).textContent = "Copied!"
             return 'Copied!';
         } else {
-            document.getElementById(button_id).textContent = original_text
             return original_text;
         }
     }
