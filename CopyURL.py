@@ -55,7 +55,7 @@ dash_app.clientside_callback(
             setTimeout(function(){ 
                 return function(id_to_update, text_to_update){
                     document.getElementById(id_to_update).textContent = text_to_update
-                }(button_id)
+                }(button_id, original_text)
                 }, 1000);
 
             document.getElementById(button_id).textContent = "Copied!"
