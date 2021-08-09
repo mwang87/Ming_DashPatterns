@@ -52,11 +52,10 @@ dash_app.clientside_callback(
             document.execCommand('copy');
             document.body.removeChild(el);
 
-            setTimeout(function(){ 
-                return function(id_to_update, text_to_update){
+            setTimeout(function(id_to_update, text_to_update){ 
+                return function(){
                     document.getElementById(id_to_update).textContent = text_to_update
-                }(button_id, original_text)
-                }, 1000);
+                }}(button_id, original_text), 1000);
 
             document.getElementById(button_id).textContent = "Copied!"
             return 'Copied!';
