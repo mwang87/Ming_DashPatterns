@@ -1,3 +1,5 @@
+import plotly.graph_objects as go
+
 def _render_spectrum_plot(ms_peaks):
     max_int = max([peak[1] for peak in ms_peaks])
     # Drawing the spectrum object
